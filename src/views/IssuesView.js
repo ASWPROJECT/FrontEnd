@@ -1,35 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Issue } from '../components/Issue.js';
-import { useEffect, useState } from 'react';
-
+import { NavigationBar } from '../components/NavigationBar.js';
 
 export const IssuesView = () => {
+  const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/';
+  const [apiResponse, setApiResponse] = useState('');
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const headers = {
+          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          'Content-Type': 'application/json'
+        };
 
-    const [data, setData] = useState(null);
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers,
+        });
 
-    useEffect(() => {
-        fetch('https://issuetracker2-asw.herokuapp.com/issues', {
-            mode: 'cors',
-            headers: {
-              'Origin': 'https://tu-dominio.com'
-            }
-        })
-        .then(response => response.json())
-        .then(data => setData(data))
-        .catch(err => console.log(err))
-    
-    }, [])
-    
-      if (!data) {
-        return <div>Loading...</div>;
+        const responseData = await response.json();
+        setApiResponse(responseData);
+      } catch (error) {
+        console.error('Error:', error);
       }
-    
+    };
+
+    fetchData();
+  }, []); // La dependencia vacía [] asegura que el efecto solo se ejecute una vez al montar el componente
+
+  console.log(apiResponse);
 
   return (
     <div>
-      {data.map(issue => (
-        <Issue key={issue.id} subject={issue.Subject} Description={issue.Description} />
-      ))}
+      <NavigationBar></NavigationBar>
+      {Array.isArray(apiResponse) ? (
+        apiResponse.map(issue => (
+          <Issue key={issue.id} subject={issue.Subject} Description={issue.Description} />
+        ))
+      ) : (
+        <p>Loading ...</p>
+      )}
     </div>
-  )
-}
+  );
+};

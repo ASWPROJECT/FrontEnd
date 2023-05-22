@@ -1,4 +1,3 @@
-import './assets/css/App.css';
 import { IssuesView } from './views/IssuesView';
 
 

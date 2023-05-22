@@ -1,6 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
+import '../assets/css/bulkInsertStyle.css'
 
+
+function str2JSON (str) {
+  const subjects = str.split('\n').filter(subject => subject.trim() !== ''); // Divide el string en un array de sujetos y filtra las cadenas vacías
+  const json = { subjects };
+  return JSON.stringify(json);
+}
 
 export const BulkInsertView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/bulk-insert';
@@ -34,32 +41,18 @@ export const BulkInsertView = () => {
         } catch (error) {
           console.error('Error:', error);
         }
+
+        setSubjects("")
       };
 
   return (
-        <div>
-            <h2>Bulk Insert Issues</h2>
-            <div>
-                <div>
-                    <p>Introduce each subject in a different line</p>
-                </div>
-                <div>
-                    <textarea name="Subjects" placeholder="Subjects" value={subjects} required onChange={handleSubjectsChange}/>
-                </div>
-                
-                <button onClick={handleClick}>Confirm</button>
-                {apiResponse != "" && (
-                    <div>
-                        <p>Response: {apiResponse}</p>
-                    </div>
-                    )}
-            </div>
-        </div>
+    <div>      
+      <div id="msform">
+        <h2 class="fs-title">New bulk insert</h2>          
+        <textarea class="fs-textarea" name="issues" placeholder="One item per line..." style={{height: 200}} value={subjects} required onChange={handleSubjectsChange}/>
+        <button onClick={handleClick}>Confirm</button>
+      </div>
+      <button class="close-button" onclick="">X</button>
+    </div>
   )
-}
-
-function str2JSON (str) {
-  const subjects = str.split('\n').filter(subject => subject.trim() !== ''); // Divide el string en un array de sujetos y filtra las cadenas vacías
-  const json = { subjects };
-  return JSON.stringify(json);
 }

@@ -4,24 +4,34 @@ import { useEffect, useState } from 'react';
 
 export const NewIssueView = () => {
 
-    /*const [data, setData] = useState(null);
+    const [subject, setSubject] = useState();
+    const [description, setDescription] = useState();
 
-    useEffect(() => {
-        fetch('https://issuetracker2-asw.herokuapp.com/issues', {
-            mode: 'cors',
-            headers: {
-              'Origin': 'https://tu-dominio.com'
-            }
-        })
-        .then(response => response.json())
-        .then(data => setData(data))
-        .catch(err => console.log(err))
     
-    }, [])*/
-    
+    const submit = () => {
+        setSubject()
+        setDescription()
+    }
 
   return (
-    <body>
+        <div>
+            <h2 class="title">New Issue</h2>
+            <div>
+                <div>
+                    <input type="text" name="Subject" placeholder="Subject" value={subject} required data-lenght="500"/>
+                </div>
+                <div>
+                    <textarea rows="7" name="Description" placeholder="Enter a description" value={description}></textarea>
+                </div>
+                <button onClick={submit}>Create</button>
+            </div>
+        </div>
+  )
+}
+
+
+/*
+<body>
     <div class = "lightbox">
         <form class = "lightbox-form" method="POST" action="https://issuetracker2-asw.herokuapp.com/issues">
         <h2 class="title">New Issue</h2>
@@ -44,5 +54,4 @@ export const NewIssueView = () => {
     </div>
     <button class="close-button" onclick="location.href='{{ base_url }}'">X</button>
     </body>
-  )
-}
+*/

@@ -33,6 +33,7 @@ export const IssuesView = () => {
   return (
     <div>
       <NavigationBar></NavigationBar>
+
       {Array.isArray(apiResponse) ? (
         apiResponse.map(issue => (
           <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} />

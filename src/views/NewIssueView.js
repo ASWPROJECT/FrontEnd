@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
 export const NewIssueView = () => {
@@ -47,7 +47,7 @@ export const NewIssueView = () => {
 
   return (
         <div>
-            <h2 class="title">New Issue</h2>
+            <h2>New Issue</h2>
             <div>
                 <div>
                     <input type="text" name="Subject" placeholder="Subject" value={subject} required data-lenght="500" onChange={handleSubjectChange}/>

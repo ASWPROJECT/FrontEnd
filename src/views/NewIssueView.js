@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import '../assets/css/newIssueStyle.css'
 
 
 export const NewIssueView = () => {
@@ -46,27 +47,22 @@ export const NewIssueView = () => {
       };
 
   return (
-        <div>
-            <h2>New Issue</h2>
-            <div>
-                <div>
-                    <input type="text" name="Subject" placeholder="Subject" value={subject} required data-lenght="500" onChange={handleSubjectChange}/>
-                </div>
-                <div>
-                    <textarea rows="7" name="Description" placeholder="Enter a description" value={description} onChange={handleDescriptionChange}></textarea>
-                </div>
-                <button onClick={handleClick}>Create</button>
-                <div>
-                    {apiResponse && (
-                    <div>
-                        <p>ID: {apiResponse.id}</p>
-                        <p>Subject: {apiResponse.Subject}</p>
-                        <p>Description: {apiResponse.Description}</p>
-                        {/* Muestra las propiedades del objeto apiResponse */}
-                    </div>
-                    )}
-                </div>
-            </div>
+    <div class = "lightbox">
+      <div class = "lightbox-form">
+        <h2 class="title">New Issue</h2>
+        <div class="form">
+          <div class="form-element">
+            <input type="text" name="Subject" placeholder="Subject" value={subject} required data-lenght="500" onChange={handleSubjectChange}/>    
+          </div>            
+          <div class="form-element">
+            <textarea rows="7" name="Description" placeholder="Enter a description" value={description} onChange={handleDescriptionChange}></textarea>
+          </div>            
+          <div class="form-element">
+            <button class="create-button" onClick={handleClick}>Create</button>
+          </div>            
         </div>
+      </div>
+      <button class="close-button" onclick="">X</button>
+    </div>
   )
 }

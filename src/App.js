@@ -1,4 +1,4 @@
-import './assets/css/App.css';
+import { BulkInsertView } from './views/BulkInsertView';
 import { IssuesView } from './views/IssuesView';
 import { NewIssueView } from './views/NewIssueView';
 

@@ -50,18 +50,16 @@ export const NewIssueView = () => {
     <div class = "lightbox">
       <div class = "lightbox-form">
         <h2 class="title">New Issue</h2>
-        <div class="form-wrapper">
-          <div class="main">              
-            <fieldset>
-              <input type="text" name="Subject" placeholder="Subject" value={subject} required data-lenght="500" onChange={handleSubjectChange}/>    
-            </fieldset>               
-            <fieldset>
-              <textarea rows="7" name="Description" placeholder="Enter a description" value={description} onChange={handleDescriptionChange}></textarea>
-            </fieldset>              
-          </div>
-          </div>
-          <div class="btn-container">
-          <button class="create action-button" onClick={handleClick}>Create</button>
+        <div class="form">
+          <div class="form-element">
+            <input type="text" name="Subject" placeholder="Subject" value={subject} required data-lenght="500" onChange={handleSubjectChange}/>    
+          </div>            
+          <div class="form-element">
+            <textarea rows="7" name="Description" placeholder="Enter a description" value={description} onChange={handleDescriptionChange}></textarea>
+          </div>            
+          <div class="form-element">
+            <button class="create-button" onClick={handleClick}>Create</button>
+          </div>            
         </div>
       </div>
       <button class="close-button" onclick="">X</button>

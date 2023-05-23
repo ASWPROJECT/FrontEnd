@@ -1,7 +1,6 @@
 body {
     font-family: montserrat, arial, verdana;
   }
-
   .lightbox{
     display: flex;
     align-content: center;
@@ -13,6 +12,8 @@ body {
   }
 
   .lightbox-form {
+    align-content: center;
+    align-items: center;
     flex-basis: 700px;
     max-width: 700px;
     width: 700px;
@@ -35,61 +36,45 @@ body {
     color: #2e3440;
     font-weight: 400;
   }
-  
-  .main {
-    flex: 1;
-    min-width: 0;
-    padding: 1rem;
-  }
-  .lightbox fieldset {
-    margin-bottom: 1rem;
-  }
-  fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    position: relative;
+  .form {
+    text-align: justify;
     width: 100%;
+    flex: 1;
+    min-width: min-content;
+    padding: 1rem;
+    position: relative;
+  }
+  .form-element {
+    padding: 0.1rem;
+    margin-bottom: 0.1rem;
   }
   .lightbox textarea {
-    min-height: 13rem;
-  }
-  .lightbox-form textarea {
     min-height: 4.5rem;
     resize: vertical;
+    overflow: auto;
   }
-  .lightbox textarea {
-    resize: vertical;
-  }
-  textarea {
-    min-height: 10rem;
-    resize: vertical;
-  }
-  input[type=date], input[type=email], input[type=number], input[type=password], input[type=search], input[type=text], input[type=url], select, textarea {
+  input {
     background: #fff;
     border: 2px solid #d8dee9;
     border-radius: 3px;
     color: #4c566a;
-    margin: 0;
-    padding: 0.3rem 1rem 0.3rem 0.95rem;
+    padding: 0.3rem;
+    width: 98.15%;
+  }
+  textarea{
+    background: #fff;
+    border: 2px solid #d8dee9;
+    border-radius: 3px;
+    color: #4c566a;
+    padding: 0.3rem;
     width: 100%;
   }
-  textarea {
-    overflow: auto;
-  }
-  button, input, optgroup, select, textarea {
+  button {
     color: inherit;
     font: inherit;
     margin: 0;
   }
-  .lightbox-form .btn-container {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .lightbox-form .action-button {
-    width: 100%;
-  }
-  .create {
+  .create-button {
     padding: 0.75rem 1.5rem;
     font-size: .875rem;
     align-items: center;
@@ -103,7 +88,8 @@ body {
     text-align: center;
     text-transform: uppercase;
     white-space: nowrap;
-  }
+    width: 100%;
+  }  
   .close-button {
     position: absolute;
     top: 10px;

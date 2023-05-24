@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### `rafc` Shortcut para crear componente 
+
+Si instalais la extension de React en Vscode al escribir rafc os genera un esqueleto para crear un componente con el mismo nombre del fichero .js

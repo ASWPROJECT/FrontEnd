@@ -30,13 +30,37 @@ export const IssuesView = () => {
 
   console.log(apiResponse);
 
+  const deleteIssue = async (issueId) => {
+    try {    
+      const headers = {
+        Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+        'Content-Type': 'application/json'
+      };
+
+      const response = await fetch(apiUrl + issueId + '/delete', {
+        method: 'DELETE',
+        headers,
+      });
+
+      if (response.ok) {
+        // Eliminación exitosa, actualiza el estado de apiResponse
+        setApiResponse(prevState => prevState.filter(issue => issue.id !== issueId));
+      } else {
+        console.log('Error al eliminar el issue');
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div>
       <NavigationBar></NavigationBar>
 
       {Array.isArray(apiResponse) ? (
         apiResponse.map(issue => (
-          <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} />
+          <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
         ))
       ) : (
         <p>Loading ...</p>

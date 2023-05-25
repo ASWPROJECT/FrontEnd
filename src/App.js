@@ -1,11 +1,16 @@
+//import './assets/css/App.css';
 import { IssuesView } from './views/IssuesView';
+import { Register } from  './views/RegisterView';
+import { NewIssueView } from './views/NewIssueView';
+import { Login } from  './views/LoginView';
+
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <IssuesView></IssuesView>
+      <Login></Login>
       </header>
     </div>
   );

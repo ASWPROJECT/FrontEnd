@@ -3,6 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react'
 import '../assets/css/registerStyle.css';
+import { Link } from 'react-router-dom'
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%]{8,24}$/;
@@ -193,8 +194,7 @@ export const Register = () => {
                 <p>
                     Already registered?<br />
                     <span className="line">
-                        { }
-                        <a href="#">Sign In</a>
+                        <Link to="/login">Sign In</Link>
                     </span>
                 </p>
             </form>

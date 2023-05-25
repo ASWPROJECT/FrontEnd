@@ -1,22 +1,33 @@
 import React from 'react'
 import '../assets/css/NavBarStyles.css'
+import { Link, Outlet } from 'react-router-dom'
 
 export const NavigationBar = () => {
-
-    const base_url = 'https://issuetracker2-asw.herokuapp.com/issues/'
 
   return (
     <div>
         <nav>
             <h1 class="app-title">Issue Tracker</h1>
             <ul>
-                <li><a href={{ base_url }}>Issues</a></li>
-                <li><a href="{{ base_url }}/view_profile/">My Activities</a></li>
-                <li><a href="{{ base_url }}/list_users/">Users</a></li>
-                <li><a href="{{ base_url }}/user-settings/user-profile/">Edit profile</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li>
+                <Link to="/"><a>Issues</a></Link>
+              </li>
+              <li>
+                <Link to="/activities"><a>My Activities</a></Link>
+              </li>
+              <li>
+                <Link to="/users"><a>Users</a></Link>
+              </li>
+              <li>
+                <Link to="/edit_profile"><a>Edit profile</a></Link>
+              </li>
+              <li>
+                <Link to="/logout"><a>Logout</a></Link>
+              </li>
             </ul>
         </nav>
+        <hr />
+        <Outlet/>
     </div>
   )
 }

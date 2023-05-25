@@ -29,6 +29,7 @@
 .activity p:first-child {
     font-weight: bold;
     color: #18d6b3;
+    font-size: 120%;
 }
 
 .activity p:nth-of-type(2) {

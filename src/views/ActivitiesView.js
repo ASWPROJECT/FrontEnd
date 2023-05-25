@@ -37,12 +37,10 @@ export const ActivitiesView = () => {
 
   return (
     <div>    
-      <NavigationBar></NavigationBar>
-
       <div class="activity">
         {Array.isArray(apiResponse) ? (
           apiResponse.map(activity => (
-            <Activity id={activity.id} creator={activity.Creator} created_at={activity.Created_at} type={activity.Type} user={activity.User}/>
+            <Activity id={activity.id} creator={activity.Creator_username} created_at={activity.Created_at} type={activity.Type} user={activity.User_username}/>
           ))
         ) : (
           <p>No activities</p>

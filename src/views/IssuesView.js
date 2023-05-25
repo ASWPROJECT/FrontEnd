@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Issue } from '../components/Issue.js';
-import { NavigationBar } from '../components/NavigationBar.js';
 import '../assets/css/IssuesViewStyles.css'
+import { Link } from 'react-router-dom'
 
 export const IssuesView = () => {
   const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/';
@@ -144,7 +144,6 @@ export const IssuesView = () => {
 
   return (
     <div class="WNDW">
-      <NavigationBar></NavigationBar>
       <div class="taskboard-actions">
         <div class="issue-table-options">
           <div className="filter-form">
@@ -214,8 +213,12 @@ export const IssuesView = () => {
           </div>  
         </div>
         <div class="new-issue">
-          <button class="new-issue-btn" onclick="window.location.href='/newIssues/'">NEW ISSUE</button>        
-          <button class="bulk-insert-btn" onclick="window.location.href='/bulk_insert/'"></button>  
+          <button class="new-issue-btn">
+            <Link class="new-issue-btn-text" to="/new_issue">NEW ISSUE</Link>
+          </button>    
+          <button class="bulk-insert-btn">
+            <Link to="/bulk_insert">'</Link>
+          </button>  
         </div>
 
       </div> 

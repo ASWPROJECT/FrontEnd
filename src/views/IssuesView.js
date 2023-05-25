@@ -144,7 +144,6 @@ export const IssuesView = () => {
 
   return (
     <div class="WNDW">
-      <NavigationBar></NavigationBar>
       <div class="taskboard-actions">
         <div class="issue-table-options">
           <div className="filter-form">

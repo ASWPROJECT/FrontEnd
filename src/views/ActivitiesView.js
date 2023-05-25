@@ -37,8 +37,6 @@ export const ActivitiesView = () => {
 
   return (
     <div>    
-      <NavigationBar></NavigationBar>
-
       <div class="activity">
         {Array.isArray(apiResponse) ? (
           apiResponse.map(activity => (

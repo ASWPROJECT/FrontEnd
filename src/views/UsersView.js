@@ -36,8 +36,6 @@ export const UsersView = () => {
 
   return (
     <div>    
-      <NavigationBar></NavigationBar>
-
       <div class="users">
         {Array.isArray(apiResponse) ? (
           apiResponse.map(user => (

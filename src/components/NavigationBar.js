@@ -10,19 +10,19 @@ export const NavigationBar = () => {
             <h1 class="app-title">Issue Tracker</h1>
             <ul>
               <li>
-                <Link to="/">Issues</Link>
+                <Link to="/"><a>Issues</a></Link>
               </li>
               <li>
-                <Link to="/activities">My Activities</Link>
+                <Link to="/activities"><a>My Activities</a></Link>
               </li>
               <li>
-                <Link to="/users">Users</Link>
+                <Link to="/users"><a>Users</a></Link>
               </li>
               <li>
-                <Link to="/edit_profile">Edit profile</Link>
+                <Link to="/edit_profile"><a>Edit profile</a></Link>
               </li>
               <li>
-                <Link to="/logout">Logout</Link>
+                <Link to="/logout"><a>Logout</a></Link>
               </li>
             </ul>
         </nav>
@@ -31,12 +31,3 @@ export const NavigationBar = () => {
     </div>
   )
 }
-/*
-<ul>
-                <li><a href={{ base_url }}>Issues</a></li>
-                <li><a href="{{ base_url }}/view_profile/">My Activities</a></li>
-                <li><a href="{{ base_url }}/list_users/">Users</a></li>
-                <li><a href="{{ base_url }}/user-settings/user-profile/">Edit profile</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            </ul>
-*/

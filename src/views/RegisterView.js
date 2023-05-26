@@ -198,7 +198,6 @@ export const Register = () => {
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
-
                         <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
                         <p>
                             Already registered?<br />

@@ -3,14 +3,12 @@
 }
 
 .taskboard-actions {
-    margin-top: 20px;
-    margin-bottom: 150px;
     position: relative; /* set the parent to a positioned element */
 }
 
 .issue-table-options {
     display: flex;
-    position: absolute;
+    position: relative;
     left: 0; /* position to the left edge */
     top: 0; /* position to the top edge */
 }
@@ -103,6 +101,12 @@
     display: flex;
     row-gap: 0.5rem;
     float: right;
+    align-items: center;
+}
+
+.ajuste {
+    display: flex;
+    column-gap: 50px;
 }
 
 .new-issue-btn, .btn-small {
@@ -120,7 +124,8 @@
     white-space: nowrap;
 }
 
-.new-issue-btn .btn-small:hover {
+.new-issue-btn:hover {
+    transition: background-color 0.3s ease;
     background-color: #005b82;
     color: #FFFFFF;
 }
@@ -136,8 +141,8 @@
 .bulk-insert-btn {
     border: none;
     padding: 10px;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background: url("../images/bulk.png") no-repeat center center;
     background-repeat: no-repeat;
     background-position: center;

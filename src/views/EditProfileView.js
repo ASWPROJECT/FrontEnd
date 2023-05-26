@@ -50,11 +50,11 @@ export const EditProfileView = () => {
 
     const changeBioProfile = async (bio) => {
         try {    
-            const headers = {
-            Authorization: 'Token 236faa85415c87a7a6c00017e6a5a5dc56f8f675',
-            'Content-Type': 'application/json'
-            };
-
+        const headers = {
+        Authorization: 'Token 236faa85415c87a7a6c00017e6a5a5dc56f8f675',
+        'Content-Type': 'application/json'
+        };
+/** 
             const formData = new FormData();
             formData.append('bio', bio);
         
@@ -63,7 +63,17 @@ export const EditProfileView = () => {
                 headers,
                 body: formData,
             });
-
+*/
+          const data = {
+            'bio': bio,
+          };
+    
+          const response = await fetch(apiChangeBioProfileUrl, {
+            method: 'PUT',
+            headers,
+            body: JSON.stringify(data)
+          });
+          console.log("BIO:  "+bio)
             if (response.ok) {
                 console.log('Bio del usuario actualizada');
 

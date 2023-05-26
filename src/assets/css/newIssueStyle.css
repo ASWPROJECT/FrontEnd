@@ -20,6 +20,7 @@ body {
   }
 
   .lightbox .title {
+    padding: 5%;
     text-align: center;
   }
 
@@ -48,6 +49,7 @@ body {
     padding: 0.1rem;
     margin-bottom: 0.1rem;
   }
+
   .lightbox textarea {
     min-height: 4.5rem;
     resize: vertical;
@@ -69,19 +71,23 @@ body {
     padding: 0.3rem;
     width: 100%;
   }
-  button {
-    color: inherit;
-    font: inherit;
-    margin: 0;
+
+  .buttons{
+    display: flex;
+    column-gap: 5px;
   }
-  .create-button {
+
+  button {
     padding: 0.75rem 1.5rem;
     font-size: .875rem;
     align-items: center;
-    background-color: #83eede;
     border: 0;
     border-radius: 4px;
+    font: inherit;
     color: #2e3440;
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
     display: inline-flex;
     justify-content: center;
     line-height: initial;
@@ -89,20 +95,16 @@ body {
     text-transform: uppercase;
     white-space: nowrap;
     width: 100%;
-  }  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    color: #fff;
-    background-color: rgb(206, 124, 124);
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
   }
-  .close-button:hover {
-    background-color: #c00;
+
+  .create-button {
+    background-color: #83eede;
+  }  
+
+  .cancel-button {
+    background-color: #c0c0c0;
+  }  
+
+  .linked-button{
+    width: 100%;
   }

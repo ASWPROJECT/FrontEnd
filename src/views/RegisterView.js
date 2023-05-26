@@ -77,6 +77,8 @@ export const Register = () => {
                 setErrMsg('');
                 console.log("Usuario creado correctamente");
                 console.log(responseData);
+                localStorage.setItem('token', responseData.token);
+
             } else {
                 if (response.status === 409) {
                     setErrMsg(responseData.error);

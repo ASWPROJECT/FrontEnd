@@ -54,12 +54,15 @@ export const Login = () => {
                 body: formData
             });
 
+            const responseData = await response.json();
+
             if (response.ok) {
                 setSuccess(true);
                 setUser('');
                 setPwd('');
                 setErrMsg('');
                 console.log("Usuario logeado correctamente");
+                localStorage.setItem('token', responseData.token);
             } else {
                 if (response.status === 400) {
                     setErrMsg('Username or password incorrect');

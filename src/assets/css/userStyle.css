@@ -1,0 +1,21 @@
+.users {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .user {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  
+  .username {
+    margin-top: 10px;
+    color: #333333;
+  }

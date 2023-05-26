@@ -45,27 +45,27 @@ export const Profile = (props) => {
       </fieldset>
 
       <fieldset>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username" className="black-label">Username:</label>
         <input type="text" name="username" value={username} readOnly />
       </fieldset>
 
       <fieldset>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email" className="black-label">Email:</label>
         <input type="text" name="email" value={email} readOnly />
       </fieldset>
 
       <fieldset>
-        <label htmlFor="first_name">First name:</label>
+        <label htmlFor="first_name" className="black-label">First name:</label>
         <input type="text" name="first_name" value={first_name} readOnly />
       </fieldset>
 
       <fieldset>
-        <label htmlFor="last_name">Last name:</label>
+        <label htmlFor="last_name" className="black-label">Last name:</label>
         <input type="text" name="last_name" value={last_name} readOnly />
       </fieldset>
 
       <fieldset>
-        <label htmlFor="bio">Bio (max. 500 characters):</label>
+        <label htmlFor="bio" className="black-label">Bio (max. 500 characters):</label>
         <textarea name="bio" id="bio" placeholder="Tell us something about you" onChange={(e) => setBio(e.target.value)} value={bioAux}></textarea>
       </fieldset>
 

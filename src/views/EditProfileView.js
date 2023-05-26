@@ -87,34 +87,32 @@ export const EditProfileView = () => {
     };
 
     const changeImageProfile = async (url) => {
-        try {    
-            const headers = {
-            Authorization: 'Token 236faa85415c87a7a6c00017e6a5a5dc56f8f675',
-            'Content-Type': 'application/json'
-            };
-
-            const formData = new FormData();
-            formData.append('url', url);
-
-            const response = await fetch(apiChangeImageProfileUrl, {
-                method: 'PUT',
-                headers,
-                body: formData,
-            });
-
-            if (response.ok) {
-                console.log('Imagen de perfil del usuario actualizada');
-            } else {
-                console.log('Error al cambiar la imagen de perfil del usuario');
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
+      try {
+        const headers = {
+          Authorization: 'Token 236faa85415c87a7a6c00017e6a5a5dc56f8f675',
+        };
     
-      
+        const formData = new FormData();
+        formData.append('image', url);
+    
+        const response = await fetch(apiChangeImageProfileUrl, {
+          method: 'PUT',
+          headers,
+          body: formData,
+        });
+    
+        console.log("URL--->" + url);
+    
+        if (response.ok) {
+          console.log('Imagen de perfil del usuario actualizada');
+        } else {
+          console.log('Error al cambiar la imagen de perfil del usuario');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+              
     return (
         <div>
           {apiResponse.user && apiResponse.bio && (

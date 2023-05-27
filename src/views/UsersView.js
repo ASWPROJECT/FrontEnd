@@ -6,13 +6,14 @@ import { NavigationBar } from '../components/NavigationBar';
 
 export const UsersView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com/users/users/';
+    const token = localStorage.getItem('token'); 
     const [apiResponse, setApiResponse] = useState('');
 
     useEffect(() => {
       const fetchData = async () => {
         try {
           const headers = {
-            Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+            Authorization: `Token ${token}`, // Incluir el token en el encabezado
             'Content-Type': 'application/json'
           };
 

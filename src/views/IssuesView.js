@@ -59,7 +59,7 @@ export const IssuesView = () => {
   const deleteIssue = async (issueId) => {
     try {    
       const headers = {
-        Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+        Authorization: `Token ${token}`, // Incluir el token en el encabezado
         'Content-Type': 'application/json'
       };
 
@@ -95,7 +95,7 @@ export const IssuesView = () => {
     // Realizar la petición con la URL construida
     try {
       const headers = {
-        Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+        Authorization: `Token ${token}`, // Incluir el token en el encabezado
         'Content-Type': 'application/json'
       };
   

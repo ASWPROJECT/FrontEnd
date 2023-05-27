@@ -1,8 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-//import '../assets/css/activityStyle.css'
 import { Activity } from '../components/Activity';
-import { NavigationBar } from '../components/NavigationBar';
 
 
 export const ActivitiesView = () => {
@@ -34,6 +32,8 @@ export const ActivitiesView = () => {
     }, []); // La dependencia vacía [] asegura que el efecto solo se ejecute una vez al montar el componente
 
     console.log(apiResponse);
+
+    
 
   return (
     <div>    

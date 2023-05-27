@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import '../assets/css/newIssueStyle.css'
+import { Link } from 'react-router-dom'
 
 
 export const NewIssueView = () => {
@@ -9,7 +10,6 @@ export const NewIssueView = () => {
 
     const [subject, setSubject] = useState('');
     const [description, setDescription] = useState('');
-    const [apiResponse, setApiResponse] = useState('');
 
     const handleSubjectChange = (event) => {
         setSubject(event.target.value);
@@ -37,13 +37,17 @@ export const NewIssueView = () => {
             headers,
             body: JSON.stringify(data)
           });
-    
-          const responseData = await response.json();
-          setApiResponse(responseData)
+
+          setSubject("")
+          setDescription("")
     
         } catch (error) {
           console.error('Error:', error);
         }
+      };
+
+      const handleCancelClick = async () => {
+        
       };
 
   return (
@@ -57,12 +61,16 @@ export const NewIssueView = () => {
           <div class="form-element">
             <textarea rows="7" name="Description" placeholder="Enter a description" value={description} onChange={handleDescriptionChange}></textarea>
           </div>            
-          <div class="form-element">
-            <button class="create-button" onClick={handleClick}>Create</button>
+          <div class="buttons">
+            <Link class="linked-button" to="/">
+              <button class="cancel-button">Cancel</button>
+            </Link>  
+            <Link class="linked-button" to="/">
+              <button class="create-button" onClick={handleClick}>Create</button>
+            </Link>            
           </div>            
         </div>
       </div>
-      <button class="close-button" onclick="">X</button>
     </div>
   )
 }

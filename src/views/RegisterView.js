@@ -83,7 +83,7 @@ export const Register = () => {
                 if (response.status === 409) {
                     setErrMsg(responseData.error);
                 } else {
-                    setErrMsg('Registration failed.');
+                    setErrMsg('There has been an error. Please try again.');
                 }
                 errRef.current.focus();
             }

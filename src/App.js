@@ -15,12 +15,12 @@ function App() {
   return (
       <div>
         <Routes>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/register" element={<Register/>}></Route>
           <Route path="/" element={<NavigationBar/>}>
             <Route path="/" element={<IssuesView/>}></Route>
             <Route path="/activities" element={<ActivitiesView/>}></Route>
             <Route path="/users" element={<UsersView/>}></Route>
-            <Route path="/login" element={<Login/>}></Route>
-            <Route path="/register" element={<Register/>}></Route>
             <Route path="/new_issue" element={<NewIssueView/>}></Route>
             <Route path="/bulk_insert" element={<BulkInsertView/>}></Route>
             <Route path="/edit_profile" element={<EditProfileView/>}></Route>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import '../assets/css/bulkInsertStyle.css'
+import { Link } from 'react-router-dom'
 
 
 function str2JSON (str) {
@@ -47,12 +48,18 @@ export const BulkInsertView = () => {
 
   return (
     <div>      
-      <div id="msform">
-        <h2 class="fs-title">New bulk insert</h2>          
+      <div class="bulk">
+        <h2 class="title">New bulk insert</h2>          
         <textarea class="fs-textarea" name="issues" placeholder="One item per line..." style={{height: 200}} value={subjects} required onChange={handleSubjectsChange}/>
-        <button onClick={handleClick}>Confirm</button>
+        <div class="buttons">
+            <Link class="linked-button" to="/">
+              <button class="cancel-button">Cancel</button>
+            </Link>  
+            <Link class="linked-button" to="/">
+              <button class="confirm-button" onClick={handleClick}>Confirm</button>
+            </Link>            
+          </div>  
       </div>
-      <button class="close-button" onclick="">X</button>
     </div>
   )
 }

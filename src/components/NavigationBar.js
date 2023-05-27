@@ -4,6 +4,11 @@ import { Link, Outlet } from 'react-router-dom'
 
 export const NavigationBar = () => {
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+  };
+
+
   return (
     <div>
         <nav>
@@ -22,7 +27,7 @@ export const NavigationBar = () => {
                 <Link to="/edit_profile"><a>Edit profile</a></Link>
               </li>
               <li>
-                <Link to="/logout"><a>Logout</a></Link>
+                <Link to="/login" onClick={handleLogout}><a>Logout</a></Link>
               </li>
             </ul>
         </nav>

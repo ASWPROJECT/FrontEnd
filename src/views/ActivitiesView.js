@@ -5,13 +5,15 @@ import { Activity } from '../components/Activity';
 
 export const ActivitiesView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/activities';
+    const token = localStorage.getItem('token'); 
+
     const [apiResponse, setApiResponse] = useState('');
 
     useEffect(() => {
       const fetchData = async () => {
         try {
           const headers = {
-            Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+            Authorization: `Token ${token}`, // Incluir el token en el encabezado
             'Content-Type': 'application/json'
           };
 

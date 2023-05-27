@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export const NewIssueView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/';
-
+    const token = localStorage.getItem('token'); 
 
     const [subject, setSubject] = useState('');
     const [description, setDescription] = useState('');
@@ -21,9 +21,9 @@ export const NewIssueView = () => {
 
 
     const handleClick = async () => {
-        try {    
+        try {
           const headers = {
-            Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+            Authorization: `Token ${token}`, // Incluir el token en el encabezado
             'Content-Type': 'application/json'
           };
     

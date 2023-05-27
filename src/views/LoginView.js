@@ -6,7 +6,7 @@ import { Link, Navigate } from 'react-router-dom';
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%]{8,24}$/;
 
-const apiUrl = 'http://127.0.0.1:8000/users/api-token-auth/';
+const apiUrl = 'https://issuetracker2-asw.herokuapp.com/users/api-token-auth/';
 
 export const Login = ({ setIsLoggedIn }) => {
     const userRef = useRef();

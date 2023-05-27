@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 export const IssuesView = () => {
   const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/';
   const apiUsersUrl = 'https://issuetracker2-asw.herokuapp.com/users/users/';
+  const token = localStorage.getItem('token'); 
+
   const [apiResponse, setApiResponse] = useState('');
   const [usersList, setUsersList] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,7 +19,7 @@ export const IssuesView = () => {
     const fetchData = async () => {
       try {
         const headers = {
-          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          Authorization: `Token ${token}`, // Incluir el token en el encabezado
           'Content-Type': 'application/json'
         };
 
@@ -34,7 +36,7 @@ export const IssuesView = () => {
 
       try {
         const headers = {
-          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          Authorization: `Token ${token}`, // Incluir el token en el encabezado
           'Content-Type': 'application/json'
         };
 

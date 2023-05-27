@@ -12,6 +12,7 @@ function str2JSON (str) {
 
 export const BulkInsertView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/bulk-insert';
+    const token = localStorage.getItem('token'); 
 
     const [subjects, setSubjects] = useState('');
     const [apiResponse, setApiResponse] = useState('');
@@ -23,7 +24,7 @@ export const BulkInsertView = () => {
     const handleClick = async () => {
         try {    
           const headers = {
-            Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+            Authorization: `Token ${token}`, // Incluir el token en el encabezado
             'Content-Type': 'application/json'
           };
     

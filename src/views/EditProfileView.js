@@ -6,10 +6,11 @@ import { Profile } from '../components/ProfileUser.js';
 
 
 export const EditProfileView = () => {
-    const apiGetBioImageProfileUrl = 'http://127.0.0.1:8000/users/users/';
-    const apiUserUrl = 'http://127.0.0.1:8000/users/edit-user-profile/';
-    const apiChangeBioProfileUrl = 'http://127.0.0.1:8000/users/change-bio-profile/';
-    const apiChangeImageProfileUrl = 'http://127.0.0.1:8000/users/change-picture-profile/';
+    const apiUrl = 'https://issuetracker2-asw.herokuapp.com'; 
+    const apiGetBioImageProfileUrl = apiUrl+'/users/users/';
+    const apiUserUrl = apiUrl+'/users/edit-user-profile/';
+    const apiChangeBioProfileUrl = apiUrl+'/users/change-bio-profile/';
+    const apiChangeImageProfileUrl = apiUrl+'/users/change-picture-profile/';
 
     const [apiResponse, setApiResponse] = useState('');
 

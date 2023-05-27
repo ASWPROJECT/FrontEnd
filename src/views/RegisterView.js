@@ -9,7 +9,7 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%]{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-const apiUrl = 'http://127.0.0.1:8000/users/register/';
+const apiUrl = 'https://issuetracker2-asw.herokuapp.com/users/register/';
 
 export const Register = ({ setIsLoggedIn }) => {
     const userRef = useRef();

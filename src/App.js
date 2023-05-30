@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from './components/NavigationBar';
 import { IssuesView } from './views/IssuesView';
+import { IssueDetailView } from './views/IssueDetailView';
 import { Register } from './views/RegisterView';
 import { NewIssueView } from './views/NewIssueView';
 import { Login } from './views/LoginView';
@@ -20,12 +21,13 @@ function App() {
   };
 
   return (
-    <div>
+      <div>
       <Routes>
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/" element={<NavigationBar />}>
           <Route path="/" element={requireLogin(<IssuesView />)} />
+          <Route path="/issues/:id" element={<IssueDetailView/>}></Route>
           <Route path="/activities" element={requireLogin(<ActivitiesView />)} />
           <Route path="/users" element={requireLogin(<UsersView />)} />
           <Route path="/new_issue" element={requireLogin(<NewIssueView />)} />
@@ -34,7 +36,7 @@ function App() {
           <Route path="*" element={requireLogin(<Error404View />)} />
         </Route>
       </Routes>
-    </div>
+      </div>
   );
 }
 

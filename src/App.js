@@ -1,4 +1,5 @@
 import { IssuesView } from './views/IssuesView';
+import { IssueDetailView } from './views/IssueDetailView';
 import { Register } from  './views/RegisterView';
 import { NewIssueView } from './views/NewIssueView';
 import { Login } from  './views/LoginView';
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<NavigationBar/>}>
             <Route path="/" element={<IssuesView/>}></Route>
+            <Route path="/issues/:id" element={<IssueDetailView/>}></Route>
             <Route path="/activities" element={<ActivitiesView/>}></Route>
             <Route path="/users" element={<UsersView/>}></Route>
             <Route path="/login" element={<Login/>}></Route>

@@ -17,7 +17,7 @@ export const IssuesView = () => {
     const fetchData = async () => {
       try {
         const headers = {
-          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
           'Content-Type': 'application/json'
         };
 
@@ -34,7 +34,7 @@ export const IssuesView = () => {
 
       try {
         const headers = {
-          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
           'Content-Type': 'application/json'
         };
 
@@ -57,7 +57,7 @@ export const IssuesView = () => {
   const deleteIssue = async (issueId) => {
     try {    
       const headers = {
-        Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+        Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
         'Content-Type': 'application/json'
       };
 
@@ -231,7 +231,9 @@ export const IssuesView = () => {
       </div> 
       {Array.isArray(apiResponse) ? (
         apiResponse.map(issue => (
-          <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
+          <Link to={`/issues/${issue.id}`} key={issue.id}>
+            <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
+          </Link>
         ))
       ) : (
         <p>Loading ...</p>

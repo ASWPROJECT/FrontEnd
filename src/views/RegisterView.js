@@ -211,11 +211,11 @@ export const Register = ({ setIsLoggedIn }) => {
                     <FontAwesomeIcon icon={faInfoCircle} />
                     Must match the first password input field.
                 </p>
-                <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
+                <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign In</button>
                 <p>
                     Already registered?<br />
                     <span className="line">
-                        <Link to="/login">Sign In</Link>
+                        <Link to="/login">Login</Link>
                     </span>
                 </p>
             </form>

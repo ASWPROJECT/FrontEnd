@@ -140,6 +140,7 @@ export const IssueDetail = ({issue}) => {
     
           const responseData = await response.json();
           setComments(responseData.comments ? Object.values(responseData.comments) : []);
+          setNewComment('');
           console.log(responseData)
     
         } catch (error) {
@@ -305,7 +306,7 @@ export const IssueDetail = ({issue}) => {
             <hr/>
             <br/>
             <div class="form-element">
-                <textarea class="description-input" name="Description" value={description} onChange={handleDescriptionChange}/>
+                <textarea class="description-input" name="Description" value={description} placeholder="Empty space is so boring...go on, be descriptive..." onChange={handleDescriptionChange}/>
             </div>
             <br/>
             <label className="search-bar" htmlFor="status">
@@ -399,7 +400,7 @@ export const IssueDetail = ({issue}) => {
               <br/>
               <br/>
               <div class="add-file">
-                <input class="add-file-input" type="file" onChange={handleNewFile} />
+                <input class="add-file-input" type="file" onChange={handleNewFile}/>
                 <button class="add-file-button" onClick={handelFilePost}>Upload</button>
               </div>
               <br/>
@@ -416,7 +417,7 @@ export const IssueDetail = ({issue}) => {
               <br/>
               <br/>
               <div class="add-comment">
-                <textarea class="comment-textarea" name="Comment" placeholder="Type a new comment here" onChange={handleNewComment} required></textarea>
+                <textarea class="comment-textarea" name="Comment" placeholder="Type a new comment here" onChange={handleNewComment} value={newComment}required></textarea>
                 <button name="create" class="post-comment-button" onClick={handelCommentPost}>Post</button>
               </div>
               <br/>

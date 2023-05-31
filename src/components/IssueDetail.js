@@ -355,7 +355,10 @@ export const IssueDetail = ({issue}) => {
                 <option value="Normal">Normal</option>
                 <option value="High">High</option>
             </select>
-            <input type="date" id="dateInput" value={dueDate} onChange={handleDateChange}/>
+            <label className="search-bar" htmlFor="priority">
+                DueDate:
+            </label>
+            <input className="select-filters" type="date" id="dateInput" value={dueDate} onChange={handleDateChange}/>
             <br/>
             <button className="save-info-button" onClick={handlePut}>Save</button>
             <br/>
@@ -401,8 +404,8 @@ export const IssueDetail = ({issue}) => {
               <br/>
               <br/>
               <div class="add-file">
-                <input type="file" onChange={handleNewFile} />
-                <button onClick={handelFilePost}>Upload File </button>
+                <input class="add-file-input" type="file" onChange={handleNewFile} />
+                <button class="add-file-button" onClick={handelFilePost}>Upload</button>
               </div>
               <br/>
               {files.map((file, index) => (
@@ -419,7 +422,7 @@ export const IssueDetail = ({issue}) => {
               <br/>
               <div class="add-comment">
                 <textarea class="comment-textarea" name="Comment" placeholder="Type a new comment here" onChange={handleNewComment} required></textarea>
-                <button name="create" class="post-comment-button" onClick={handelCommentPost}>POST</button>
+                <button name="create" class="post-comment-button" onClick={handelCommentPost}>Post</button>
               </div>
               <br/>
               {comments.map((comment, index) => (

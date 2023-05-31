@@ -442,7 +442,7 @@ fieldset{
 }
 
 .comment-textarea {
-  flex: 1;
+  flex: 8;
   width: 50px;
   height: 10px;
   resize: none;
@@ -450,12 +450,12 @@ fieldset{
 }
 
 .post-comment-button {
+  flex: 1;
   margin-left: 10px;
   width: 100px;
   height: 50px;
   background-color: #18d6b3;
   border: none;
-  border-radius: 3px;
   color: white;
   cursor: pointer;
 }
@@ -550,4 +550,29 @@ fieldset{
 .taiga-btn-delete img {
   max-width: 20px;
   max-height: 20px;
+}
+
+
+.add-file {
+  display: flex;
+  align-items: center;
+}
+
+.add-file-input {
+  display: flex;
+  flex: 8;
+}
+
+.add-file-button {
+  background-color: #18d6b3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.add-file-button:hover {
+  background-color: #15c0a9;
 }

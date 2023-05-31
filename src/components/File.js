@@ -11,7 +11,9 @@ export const File = (props) => {
   return (
     <div class="file">
           <div class="file-info">
-            <label class="file-name">{name}</label>
+            <a class="file-name" href={file} download>
+              {name}
+            </a>
             <button class="taiga-btn-delete" onClick={handleDeleteFile}></button>
           </div>
     </div>

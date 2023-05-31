@@ -149,29 +149,19 @@ export const IssueDetail = ({issue}) => {
       try {    
         const headers = {
           Authorization: `Token ${token}`,
-          'Content-Type': 'application/json',
-          'content-type': newFile.type,
-          'content-length': `${newFile.size}`, // 👈 Headers need to be a string
+          'Accept': '*/*',
         };
-  
-        /*const data = {
-          file: newFile,
-          issue_id: id
-        };*/
 
         const formData = new FormData();
         formData.append('file', newFile);
         formData.append('issue_id', id);
-        
-        console.log(formData)
+
         const response = await fetch(POST_FILE_URL, {
           method: 'POST',
           headers,
           body: formData
         });
-  
-        const responseData = await response.json();
-  
+    
       } catch (error) {
         console.error('Error:', error);
       }

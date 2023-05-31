@@ -349,13 +349,13 @@ fieldset{
 
 
 .save-info-button {
-  width: fit-content;
+  width: 180px;
+  height: 45px;
   padding: 10px;
   background-color: #18d6b3;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

@@ -139,6 +139,8 @@ export const IssueDetail = ({issue}) => {
           });
     
           const responseData = await response.json();
+          setComments(responseData.comments ? Object.values(responseData.comments) : []);
+          console.log(responseData)
     
         } catch (error) {
           console.error('Error:', error);
@@ -161,6 +163,9 @@ export const IssueDetail = ({issue}) => {
           headers,
           body: formData
         });
+
+        const responseData = await response.json();
+        setFiles(responseData.files ? Object.values(responseData.files) : []);
     
       } catch (error) {
         console.error('Error:', error);

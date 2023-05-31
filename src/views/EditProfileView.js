@@ -7,7 +7,7 @@ import { Profile } from '../components/ProfileUser.js';
 
 export const EditProfileView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com'; 
-    const apiGetBioImageProfileUrl = apiUrl+'/users/users/';
+    const apiGetBioImageProfileUrl = apiUrl+'/users/profile/';
     const apiUserUrl = apiUrl+'/users/edit-user-profile/';
     const apiChangeBioProfileUrl = apiUrl+'/users/change-bio-profile/';
     const apiChangeImageProfileUrl = apiUrl+'/users/change-picture-profile/';
@@ -39,7 +39,7 @@ export const EditProfileView = () => {
     
             setApiResponse({
               user: responseDataUser.user,
-              bio: responseDataBio,
+              profile: responseDataBio.profile,
             });
     
             console.log(responseDataUser);
@@ -127,14 +127,14 @@ export const EditProfileView = () => {
               
     return (
         <div>
-          {apiResponse.user && apiResponse.bio && (
+          {apiResponse.user && apiResponse.profile && (
             <Profile
               username={apiResponse.user.username}
               email={apiResponse.user.email}
               first_name={apiResponse.user.first_name}
               last_name={apiResponse.user.last_name}
-              bio={apiResponse.bio[0].bio}
-              url={apiResponse.bio[0].url}
+              bio={apiResponse.profile.bio}
+              url={apiResponse.profile.url}
               changeImage={changeImageProfile} 
               changeBio={changeBioProfile}
             />

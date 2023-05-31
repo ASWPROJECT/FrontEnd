@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import '../assets/css/IssueDetail.css'
 import { Comment } from './Comment.js';
+import { File } from './File.js';
 import { ActivityIssue } from './ActivityIssue.js';
 
 
@@ -232,6 +233,30 @@ export const IssueDetail = ({issue}) => {
           );
         }
     };
+
+    const deleteFile = async (fileID) => {
+      try {    
+        const headers = {
+          Authorization: `Token ${token}`, // Incluir el token en el encabezado
+          'Content-Type': 'application/json'
+        };
+  
+        const response = await fetch(POST_FILE_URL + fileID, {
+          method: 'DELETE',
+          headers,
+        });
+  
+        if (response.ok) {
+          // Eliminación exitosa, actualiza el estado de apiResponse
+          setFiles(prevState => prevState.filter(file => file.id !== fileID));
+        } else {
+          console.log('Error al eliminar el issue');
+        }
+  
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
     
     const handleAssignedChange = (event) => {
         setAssigned(event.target.value);
@@ -371,6 +396,23 @@ export const IssueDetail = ({issue}) => {
             <hr/>
             <br/>
             <br/>
+            <div class="files-component">
+              <label class="issue-label">ATTACHMENTS</label>
+              <br/>
+              <br/>
+              <div class="add-file">
+                <input type="file" onChange={handleNewFile} />
+                <button onClick={handelFilePost}>Upload File </button>
+              </div>
+              <br/>
+              {files.map((file, index) => (
+                  <File key={index} id={file.id} name={file.Name} file={file.File} issue={file.Issue} onDelete={deleteFile}/>
+              ))}
+            </div>
+            <br/>
+            <hr/>
+            <br/>
+            <br/>
             <div class="comments-component">
               <label class="issue-label">COMMENTS</label>
               <br/>
@@ -401,10 +443,6 @@ export const IssueDetail = ({issue}) => {
             <hr/>
             <br/>
             <br/>
-          <div>
-            <input type="file" onChange={handleNewFile} />
-            <button onClick={handelFilePost}>Upload File </button>
-          </div>
         </div>
   );
 };

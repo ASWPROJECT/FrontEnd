@@ -1,16 +1,19 @@
 import React from 'react'
-import '../assets/css/IssueStyle.css'
+import '../assets/css/IssueDetail.css'
 
 export const File = (props) => {
-  const { comment, created_at, creator } = props;
+  const { id, name, file, issue, onDelete} = props;
+
+  const handleDeleteFile = () => {
+    onDelete(id);
+  };
 
   return (
     <div class="file">
-        <ul>
-            <p class="title">{comment}</p>
-            <p>{creator}</p>
-            <p>{created_at}</p>
-        </ul>
+          <div class="file-info">
+            <label class="file-name">{name}</label>
+            <button class="taiga-btn-delete" onClick={handleDeleteFile}></button>
+          </div>
     </div>
   )
 }

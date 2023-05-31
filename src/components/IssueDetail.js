@@ -34,6 +34,7 @@ export const IssueDetail = ({issue}) => {
     const POST_FILE_URL = `${BASE_URL}/issues/files/`;
     const POST_WATCHERS_URL = `${BASE_URL}/issues/${id}/watch`;
     const POST_ASSIGNED_URL = `${BASE_URL}/issues/${id}/assign`;
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         setSubject(issue.Subject);
@@ -79,7 +80,7 @@ export const IssueDetail = ({issue}) => {
     const handlePut = async () => {
         try {    
           const headers = {
-            Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
+            Authorization: `Token ${token}`,
             'Content-Type': 'application/json'
           };
           
@@ -115,7 +116,7 @@ export const IssueDetail = ({issue}) => {
     const handelCommentPost = async () => {
         try {    
           const headers = {
-            Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
+            Authorization: `Token ${token}`,
             'Content-Type': 'application/json'
           };
     
@@ -139,7 +140,7 @@ export const IssueDetail = ({issue}) => {
     const handelFilePost = async () => {
       try {    
         const headers = {
-          Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
+          Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
           'content-type': newFile.type,
           'content-length': `${newFile.size}`, // 👈 Headers need to be a string
@@ -172,7 +173,7 @@ export const IssueDetail = ({issue}) => {
     const handleAssignedPost = async () => {
         try {    
           const headers = {
-            Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
+            Authorization: `Token ${token}`,
             'Content-Type': 'application/json'
           };
     
@@ -194,7 +195,7 @@ export const IssueDetail = ({issue}) => {
     const handleWatchersPost = async () => {
         try {
           const headers = {
-            Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
+            Authorization: `Token ${token}`,
             'Content-Type': 'application/json'
           };
       

@@ -9,12 +9,13 @@ export const IssueDetailView = () => {
     const [issue, setIssue] = useState('');
     const { id } = useParams();
     const SERVER_URL = `${BASE_URL}/issues/${id}`;
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchData = async () => {
           try {
             const headers = {
-              Authorization: 'Token e91064dff956cb6b1cdf90f140b051d042d322c5',
+              Authorization: `Token ${token}`,
               'Content-Type': 'application/json'
             };
     

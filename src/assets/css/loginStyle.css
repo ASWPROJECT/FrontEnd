@@ -69,12 +69,13 @@ button {
 
 button {
   padding: 0.5rem;
+  color: #282c34;
 }
 
 .instructions {
     font-size: 0.75rem;
     border-radius: 0.5rem;
-    background: #000;
+    background-color: #282c34;
     color: #fff;
     padding: 0.25rem;
     position: relative;

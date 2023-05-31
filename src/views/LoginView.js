@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, Navigate } from 'react-router-dom';
+import '../assets/css/loginStyle.css';
+ 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%]{8,24}$/;
@@ -121,7 +123,7 @@ export const Login = ({ setIsLoggedIn }) => {
                     4 to 24 characters.<br />
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
-                </p>
+                </p><br></br>
 
                 <label htmlFor="password">
                     Password:
@@ -145,7 +147,7 @@ export const Login = ({ setIsLoggedIn }) => {
                     Must include uppercase and lowercase letters and a number.<br />
                     Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                 </p>
-                <button>Sign In</button>
+                <button disabled={!validName || !validPwd ? true : false}>Login</button>
                 <p>
                     Need an Account?<br />
                     <span className="line">

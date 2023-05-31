@@ -135,14 +135,15 @@ export const Register = ({ setIsLoggedIn }) => {
                     aria-describedby="uidnote"
                     onFocus={() => setUserFocus(true)}
                     onBlur={() => setUserFocus(false)}
-                /> <br></br>
+                />                 <br></br>
+
                 <p id="uidnote" className={userFocus && username && !validName ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} />
                     4 to 24 characters.<br />
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
-
+                <br></br>
                 <label htmlFor="email">
                     Email:
                     <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />

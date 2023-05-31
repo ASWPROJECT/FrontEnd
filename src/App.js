@@ -11,6 +11,7 @@ import { UsersView } from './views/UsersView';
 import { BulkInsertView } from './views/BulkInsertView';
 import { Error404View } from './views/Error404View';
 import { EditProfileView } from './views/EditProfileView';
+import { ProfileView } from './views/ProfileView';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
@@ -33,6 +34,7 @@ function App() {
           <Route path="/new_issue" element={requireLogin(<NewIssueView />)} />
           <Route path="/bulk_insert" element={requireLogin(<BulkInsertView />)} />
           <Route path="/edit_profile" element={requireLogin(<EditProfileView />)} />
+          <Route path="/profile" element={requireLogin(<ProfileView />)} />
           <Route path="*" element={requireLogin(<Error404View />)} />
         </Route>
       </Routes>

@@ -102,6 +102,11 @@ section h1{
   .change-photo-btn {
     display: block;
     margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .change-photo-btn:hover {
+    color: #5faba0;
   }
 
   .profile-pic {

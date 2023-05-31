@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 export const IssuesView = () => {
   const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/';
   const apiUsersUrl = 'https://issuetracker2-asw.herokuapp.com/users/users/';
+  const token = localStorage.getItem('token'); 
+
   const [apiResponse, setApiResponse] = useState('');
   const [usersList, setUsersList] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,7 +19,7 @@ export const IssuesView = () => {
     const fetchData = async () => {
       try {
         const headers = {
-          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          Authorization: `Token ${token}`, // Incluir el token en el encabezado
           'Content-Type': 'application/json'
         };
 
@@ -34,7 +36,7 @@ export const IssuesView = () => {
 
       try {
         const headers = {
-          Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+          Authorization: `Token ${token}`, // Incluir el token en el encabezado
           'Content-Type': 'application/json'
         };
 
@@ -57,7 +59,7 @@ export const IssuesView = () => {
   const deleteIssue = async (issueId) => {
     try {    
       const headers = {
-        Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+        Authorization: `Token ${token}`, // Incluir el token en el encabezado
         'Content-Type': 'application/json'
       };
 
@@ -93,7 +95,7 @@ export const IssuesView = () => {
     // Realizar la petición con la URL construida
     try {
       const headers = {
-        Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+        Authorization: `Token ${token}`, // Incluir el token en el encabezado
         'Content-Type': 'application/json'
       };
   
@@ -142,89 +144,98 @@ export const IssuesView = () => {
     setOrderBy("");
   };
 
+  const invisibleStyle = {
+    color: 'transparent',
+  };
+
   return (
     <div class="WNDW">
-      <div class="taskboard-actions">
-        <div class="issue-table-options">
-          <div className="filter-form">
-            <input
-              className="search-bar"
-              type="text"
-              name="q"
-              placeholder="subject or description"
-              autoComplete="on"
-              value={searchQuery}
-              onChange={handleInputChange}
-            />
+      <div class="ajuste">
+        <div class="taskboard-actions">
+          <div class="issue-table-options">
+            <div className="filter-form">
+              <input
+                className="search-bar"
+                type="text"
+                name="q"
+                placeholder="subject or description"
+                autoComplete="on"
+                value={searchQuery}
+                onChange={handleInputChange}
+              />
 
-            <label className="search-bar" htmlFor="status">
-              Status:
-            </label>
-            <select className="select-filters" id="status" name="status" value={status} onChange={handleStatusChange}>
-              <option value=""></option>
-              <option value="New">New</option>
-              <option value="In progress">In progress</option>
-              <option value="Ready for test">Ready for test</option>
-              <option value="Closed">Closed</option>
-              <option value="Needs info">Needs info</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Postponed">Postponed</option>
-            </select>
+              <label className="search-bar" htmlFor="status">
+                Status:
+              </label>
+              <select className="select-filters" id="status" name="status" value={status} onChange={handleStatusChange}>
+                <option value=""></option>
+                <option value="New">New</option>
+                <option value="In progress">In progress</option>
+                <option value="Ready for test">Ready for test</option>
+                <option value="Closed">Closed</option>
+                <option value="Needs info">Needs info</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Postponed">Postponed</option>
+              </select>
 
-            <label className="search-bar" htmlFor="priority">
-              Priority:
-            </label>
-            <select className="select-filters" id="priority" name="priority" value={priority} onChange={handlePriorityChange}>
-              <option value=""></option>
-              <option value="Low">Low</option>
-              <option value="Normal">Normal</option>
-              <option value="High">High</option>
-            </select>
+              <label className="search-bar" htmlFor="priority">
+                Priority:
+              </label>
+              <select className="select-filters" id="priority" name="priority" value={priority} onChange={handlePriorityChange}>
+                <option value=""></option>
+                <option value="Low">Low</option>
+                <option value="Normal">Normal</option>
+                <option value="High">High</option>
+              </select>
 
-            <label className="search-bar" htmlFor="creator">
-              Created by:
-            </label>
-            <select className="select-filters" id="creator" name="creator" value={creator} onChange={handleCreatorChange}>
-              <option value=""></option>
-              {Array.isArray(usersList) ? (
-                usersList.map(user => (
-                  <option value={user.user_username}>{user.user_username}</option>
-                ))
-              ) : (
-                null
-              )}
-            </select>
+              <label className="search-bar" htmlFor="creator">
+                Created by:
+              </label>
+              <select className="select-filters" id="creator" name="creator" value={creator} onChange={handleCreatorChange}>
+                <option value=""></option>
+                {Array.isArray(usersList) ? (
+                  usersList.map(user => (
+                    <option value={user.user_username}>{user.user_username}</option>
+                  ))
+                ) : (
+                  null
+                )}
+              </select>
 
-            <label className="search-bar" htmlFor="order_by">
-              Order by:
-            </label>
-            <select className="select-filters" id="order_by" name="order_by" value={orderBy} onChange={handleOrderByChange}>
-              <option value=""></option>
-              <option value="Subject">Subject ascending</option>
-              <option value="-Subject">Subject descending</option>
-              <option value="Created_at">Created at ascending</option>
-              <option value="-Created_at">Created at descending</option>
-            </select>
+              <label className="search-bar" htmlFor="order_by">
+                Order by:
+              </label>
+              <select className="select-filters" id="order_by" name="order_by" value={orderBy} onChange={handleOrderByChange}>
+                <option value=""></option>
+                <option value="Subject">Subject ascending</option>
+                <option value="-Subject">Subject descending</option>
+                <option value="Created_at">Created at ascending</option>
+                <option value="-Created_at">Created at descending</option>
+              </select>
 
-            <button className="search-action-button" onClick={searchIssues} title="Filter the selected params"></button>
+              <button className="search-action-button" onClick={searchIssues} title="Filter the selected params"></button>
+            </div>
+            <div class="filter-form" method="GET" action={ apiUrl }>
+              <button onClick={handleResetSelects} class="clear-filters-button" title="Clear filters"></button>
+            </div>  
           </div>
-          <div class="filter-form" method="GET" action={ apiUrl }>
-            <button onClick={handleResetSelects} class="clear-filters-button" title="Clear filters"></button>
-          </div>  
-        </div>
+      </div>
         <div class="new-issue">
-          <button class="new-issue-btn">
-            <Link class="new-issue-btn-text" to="/new_issue">NEW ISSUE</Link>
-          </button>    
+          <Link to="/new_issue">
+            <button class="new-issue-btn">
+                NEW ISSUE
+            </button>    
+          </Link>
           <button class="bulk-insert-btn">
-            <Link to="/bulk_insert">'</Link>
+            <Link style={invisibleStyle} to="/bulk_insert">#</Link>
           </button>  
         </div>
-
       </div> 
       {Array.isArray(apiResponse) ? (
         apiResponse.map(issue => (
-          <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
+          <Link to={`/issues/${issue.id}`} key={issue.id}>
+            <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
+          </Link>
         ))
       ) : (
         <p>Loading ...</p>

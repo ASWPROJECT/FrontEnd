@@ -1,19 +1,19 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-//import '../assets/css/activityStyle.css'
 import { Activity } from '../components/Activity';
-import { NavigationBar } from '../components/NavigationBar';
 
 
 export const ActivitiesView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com/issues/activities';
+    const token = localStorage.getItem('token'); 
+
     const [apiResponse, setApiResponse] = useState('');
 
     useEffect(() => {
       const fetchData = async () => {
         try {
           const headers = {
-            Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
+            Authorization: `Token ${token}`, // Incluir el token en el encabezado
             'Content-Type': 'application/json'
           };
 
@@ -34,6 +34,8 @@ export const ActivitiesView = () => {
     }, []); // La dependencia vacía [] asegura que el efecto solo se ejecute una vez al montar el componente
 
     console.log(apiResponse);
+
+    
 
   return (
     <div>    

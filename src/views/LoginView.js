@@ -1,16 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from 'react'
+import { Link, Navigate } from 'react-router-dom';
 import '../assets/css/loginStyle.css';
+ 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%]{8,24}$/;
 
-const apiUrl = 'http://127.0.0.1:8000/users/api-token-auth/';
+const apiUrl = 'https://issuetracker2-asw.herokuapp.com/users/api-token-auth/';
 
-
-export const Login = () => {
+export const Login = ({ setIsLoggedIn }) => {
     const userRef = useRef();
     const errRef = useRef();
 
@@ -26,32 +26,34 @@ export const Login = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        userRef.current.focus();
-    }, [])
+    userRef.current.focus();
+    }, []);
 
     useEffect(() => {
         setValidName(USER_REGEX.test(username));
-    }, [username])
+    }, [username]);
 
     useEffect(() => {
         setValidPwd(PWD_REGEX.test(password));
-    }, [password])
+    }, [password]);
 
     useEffect(() => {
         setErrMsg('');
-    }, [username, password])
+    }, [username, password]);
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
         try {
             const formData = new FormData();
             formData.append('username', username);
             formData.append('password', password);
 
             const response = await fetch(apiUrl, {
-                method: 'POST',
-                body: formData
+            method: 'POST',
+            body: formData
             });
+
+            const responseData = await response.json();
 
             if (response.ok) {
                 setSuccess(true);
@@ -59,6 +61,8 @@ export const Login = () => {
                 setPwd('');
                 setErrMsg('');
                 console.log("Usuario logeado correctamente");
+                localStorage.setItem('token', responseData.token);
+                setIsLoggedIn(true); // Update the login status
             } else {
                 if (response.status === 400) {
                     setErrMsg('Username or password incorrect');
@@ -66,13 +70,29 @@ export const Login = () => {
                     setErrMsg('Login Failed');
                 }
                 errRef.current.focus();
-            }    
+            }
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
                 errRef.current.focus();
             }
         }
+    };
+
+    if (success) {
+        return (
+            <section>
+            <h1>Login completed!</h1>
+            <p>
+                <Link to="/" style={{ color: "black" }}>Click here to go to the main screen</Link>
+            </p>
+            </section>
+        );
+    }
+
+    // Check if the user is already logged in and redirect to the home screen
+    if (localStorage.getItem('token')) {
+        return <Navigate to="/" replace />;
     }
 
     return (
@@ -103,7 +123,7 @@ export const Login = () => {
                     4 to 24 characters.<br />
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
-                </p>
+                </p><br></br>
 
                 <label htmlFor="password">
                     Password:
@@ -127,15 +147,17 @@ export const Login = () => {
                     Must include uppercase and lowercase letters and a number.<br />
                     Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                 </p>
-                <button>Sign In</button>
+                <button disabled={!validName || !validPwd ? true : false}>Login</button>
+                <p>
+                    Need an Account?<br />
+                    <span className="line">
+                        <Link to="/register">Sign In</Link>
+                    </span>
+                </p>
             </form>
-            <p>
-                Need an Account?<br />
-                <span className="line">
-                    {/*put router link here*/}
-                    <a href="">Sign Up</a>
-                </span>
-            </p>
         </section>
-    )
-}
+    );
+};
+
+
+

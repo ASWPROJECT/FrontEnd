@@ -1,16 +1,17 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from 'react'
 import '../assets/css/registerStyle.css';
+import { Link, Navigate } from 'react-router-dom';
+
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%]{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-const apiUrl = 'http://127.0.0.1:8000/users/register/';
+const apiUrl = 'https://issuetracker2-asw.herokuapp.com/users/register/';
 
-export const Register = () => {
+export const Register = ({ setIsLoggedIn }) => {
     const userRef = useRef();
     const errRef = useRef();
 
@@ -76,11 +77,15 @@ export const Register = () => {
                 setErrMsg('');
                 console.log("Usuario creado correctamente");
                 console.log(responseData);
+                localStorage.setItem('token', responseData.token);
+                setIsLoggedIn(true); // Update the login status
+
+
             } else {
                 if (response.status === 409) {
                     setErrMsg(responseData.error);
                 } else {
-                    setErrMsg('Registration failed.');
+                    setErrMsg('There has been an error. Please try again.');
                 }
                 errRef.current.focus();
             }
@@ -90,6 +95,23 @@ export const Register = () => {
             errRef.current.focus();
         }
     };
+
+    if (success) {
+        return (
+        <section>
+            <h1>Success! User created!</h1>
+            <p>
+                <Link to="/" style={{ color: "black"}}>Click here to go to main screen</Link>
+            </p>                    
+        </section>
+        );
+    }
+
+    // Check if the user is already logged in and redirect to the home screen
+    if (localStorage.getItem('token')) {
+        return <Navigate to="/" replace />;
+    }
+
 
     return (
         <section>
@@ -113,14 +135,15 @@ export const Register = () => {
                     aria-describedby="uidnote"
                     onFocus={() => setUserFocus(true)}
                     onBlur={() => setUserFocus(false)}
-                /> <br></br>
+                />                 <br></br>
+
                 <p id="uidnote" className={userFocus && username && !validName ? "instructions" : "offscreen"}>
                     <FontAwesomeIcon icon={faInfoCircle} />
                     4 to 24 characters.<br />
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
-
+                <br></br>
                 <label htmlFor="email">
                     Email:
                     <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
@@ -188,16 +211,14 @@ export const Register = () => {
                     <FontAwesomeIcon icon={faInfoCircle} />
                     Must match the first password input field.
                 </p>
-
-                <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
+                <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign In</button>
                 <p>
                     Already registered?<br />
                     <span className="line">
-                        { }
-                        <a href="#">Sign In</a>
+                        <Link to="/login">Login</Link>
                     </span>
                 </p>
             </form>
         </section>
-    )
-}
+    );
+};

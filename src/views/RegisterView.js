@@ -116,8 +116,8 @@ export const Register = ({ setIsLoggedIn }) => {
     return (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
-                <h1>Register</h1>
                 <label htmlFor="username">
                     Username:
                     <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />

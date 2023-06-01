@@ -1,34 +1,22 @@
 import React from 'react'
 import '../assets/css/IssueStyle.css'
+import { useNavigate } from 'react-router-dom';
 
 export const Issue = (props) => {
   const { id, subject, Description, Blocked, onDelete } = props;
-  // const deleteIssue = async () => {
-  //   try {    
-  //     const headers = {
-  //       Authorization: 'Token a571977cf3bf557efd80fb12cd154fb6b46aa307',
-  //       'Content-Type': 'application/json'
-  //     };
+  const navigate = useNavigate();
 
-  //     const response = await fetch(apiUrl + id + '/delete', {
-  //       method: 'DELETE',
-  //       headers,
-  //     });
-
-  //     console.log(response);
-
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  //   window.location.href = base_url;
-  // };
-
-  const handleDeleteIssue = () => {
+  const handleDeleteIssue = (event) => {
+    event.stopPropagation();
     onDelete(id);
   };
 
+  const handleClick = () => {
+    navigate(`/issues/${id}`);  
+  };
+
   return (
-    <div class="issues">
+    <div class="issues" onClick={handleClick}>
         <p class="title">{subject}</p>
         <p>{Description}</p>
         <button onClick={handleDeleteIssue} class="taiga-btn-delete"></button>

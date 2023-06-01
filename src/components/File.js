@@ -2,7 +2,7 @@ import React from 'react'
 import '../assets/css/IssueDetail.css'
 
 export const File = (props) => {
-  const { id, name, file, issue, onDelete} = props;
+  const { id, name, file, issue, onDelete, isBlocked} = props;
 
   const handleDeleteFile = () => {
     onDelete(id);
@@ -14,7 +14,10 @@ export const File = (props) => {
             <a class="file-name" href={file} download>
               {name}
             </a>
-            <button class="taiga-btn-delete" onClick={handleDeleteFile}></button>
+            {!isBlocked ? (
+              <button class="taiga-btn-delete" onClick={handleDeleteFile}></button>
+            ):(null)
+            }            
           </div>
     </div>
   )

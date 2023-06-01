@@ -9,7 +9,7 @@ export const ProfileView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com'; 
     const { id } = useParams();
     const apiGetBioImageProfileUrl = `${apiUrl}/users/${id}/`;
-    const apiUserUrl = apiUrl+'/users/edit-user-profile/';
+    const apiUserUrl = `${apiUrl}/users/user/${id}/`;
     const [apiResponseUser, setApiResponseUser] = useState('');
     const [apiResponseProfile, setApiResponseProfile] = useState('');
 
@@ -33,12 +33,11 @@ export const ProfileView = () => {
               method: 'GET',
               headers,
             });
+
             const responseDataBio = await responseBio.json();
-            console.log(responseDataUser);
-            console.log(responseDataBio);
     
             setApiResponseProfile(responseDataBio);
-            setApiResponseUser(responseDataUser);
+            setApiResponseUser(responseDataUser.user);
     
           } catch (error) {
             console.error('Error:', error);
@@ -52,7 +51,7 @@ export const ProfileView = () => {
     return (
         <div>
             <ProfileReadOnly
-              username={apiResponseUser.username}
+              username={apiResponseProfile.username}
               email={apiResponseUser.email}
               first_name={apiResponseUser.first_name}
               last_name={apiResponseUser.last_name}

@@ -30,6 +30,7 @@ export const IssuesView = () => {
 
         const responseData = await response.json();
         setApiResponse(responseData);
+        console.log(responseData);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -233,7 +234,7 @@ export const IssuesView = () => {
       </div> 
       {Array.isArray(apiResponse) ? (
         apiResponse.map(issue => (
-            <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
+            <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} Due_Date={issue.Due_Date} onDelete={deleteIssue}/>
         ))
       ) : (
         <p>Loading ...</p>

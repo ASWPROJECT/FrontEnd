@@ -233,9 +233,7 @@ export const IssuesView = () => {
       </div> 
       {Array.isArray(apiResponse) ? (
         apiResponse.map(issue => (
-          // <Link to={`/issues/${issue.id}`} key={issue.id}>
             <Issue id={issue.id} subject={issue.Subject} Description={issue.Description} Blocked={issue.Block_reason} onDelete={deleteIssue}/>
-          /* </Link> */
         ))
       ) : (
         <p>Loading ...</p>

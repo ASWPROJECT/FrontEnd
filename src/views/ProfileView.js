@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import React from 'react'
 import '../assets/css/registerStyle.css';
+import { useParams } from 'react-router-dom';
 import { ProfileReadOnly } from '../components/ProfileUserReadOnly.js';
 
 
 export const ProfileView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com'; 
-    const apiGetBioImageProfileUrl = apiUrl+'/users/profile/';
+    const { id } = useParams();
+    const apiGetBioImageProfileUrl = `${apiUrl}/users/${id}`;
     const apiUserUrl = apiUrl+'/users/edit-user-profile/';
-
+    console.log(apiGetBioImageProfileUrl)
     const [apiResponse, setApiResponse] = useState('');
 
     useEffect(() => {

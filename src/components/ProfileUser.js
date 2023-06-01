@@ -76,7 +76,7 @@ export const Profile = (props) => {
         </div>
       ))} */}
 
-      <button onClick={handleChangeBio} className="btn-small">Save changes</button>
+      <button onClick={handleChangeBio} className="btn-small change-photo-btn">Save changes</button>
     </section>
   );
 };

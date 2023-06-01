@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { User } from '../components/User';
-import { NavigationBar } from '../components/NavigationBar';
 
 
 export const UsersView = () => {
@@ -33,6 +32,8 @@ export const UsersView = () => {
       fetchData();
     }, []); // La dependencia vacía [] asegura que el efecto solo se ejecute una vez al montar el componente
 
+
+
     console.log(apiResponse);
 
   return (
@@ -40,7 +41,7 @@ export const UsersView = () => {
       <div class="users">
         {Array.isArray(apiResponse) ? (
           apiResponse.map(user => (
-            <User username={user.user_username} image_url={user.url}/>
+            <User id={user.id} username={user.user_username} image_url={user.url}/>
           ))
         ) : (
           <p>No users</p>

@@ -548,3 +548,7 @@ body {
 .add-file-button:hover {
   background-color: #15c0a9;
 }
+
+.blocked {
+  color: black;
+}

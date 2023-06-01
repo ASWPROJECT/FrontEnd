@@ -51,7 +51,7 @@ export const ProfileView = () => {
     return (
         <div>
             <ProfileReadOnly
-              username={apiResponseProfile.username}
+              username={apiResponseUser.username}
               email={apiResponseUser.email}
               first_name={apiResponseUser.first_name}
               last_name={apiResponseUser.last_name}

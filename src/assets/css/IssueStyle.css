@@ -1,5 +1,6 @@
 .issues {
     margin: 20px;
+    cursor: pointer;
 }
    
 .issues {
@@ -50,4 +51,9 @@
 .taiga-btn-delete img {
   max-width: 20px;
   max-height: 20px;
+}
+
+.indicators {
+  display: flex;
+  column-gap: 20px;
 }

@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import React from 'react'
 import '../assets/css/registerStyle.css';
+import { useParams } from 'react-router-dom';
 import { ProfileReadOnly } from '../components/ProfileUserReadOnly.js';
 
 
 export const ProfileView = () => {
     const apiUrl = 'https://issuetracker2-asw.herokuapp.com'; 
-    const apiGetBioImageProfileUrl = apiUrl+'/users/profile/';
+    const { id } = useParams();
+    const apiGetBioImageProfileUrl = `${apiUrl}/users/${id}/`;
     const apiUserUrl = apiUrl+'/users/edit-user-profile/';
-
-    const [apiResponse, setApiResponse] = useState('');
+    const [apiResponseUser, setApiResponseUser] = useState('');
+    const [apiResponseProfile, setApiResponseProfile] = useState('');
 
     useEffect(() => {
       const token = localStorage.getItem('token'); // Obtener el token del local storage
@@ -32,14 +34,12 @@ export const ProfileView = () => {
               headers,
             });
             const responseDataBio = await responseBio.json();
-    
-            setApiResponse({
-              user: responseDataUser.user,
-              profile: responseDataBio.profile,
-            });
-    
             console.log(responseDataUser);
             console.log(responseDataBio);
+    
+            setApiResponseProfile(responseDataBio);
+            setApiResponseUser(responseDataUser);
+    
           } catch (error) {
             console.error('Error:', error);
           }
@@ -51,16 +51,14 @@ export const ProfileView = () => {
               
     return (
         <div>
-          {apiResponse.user && apiResponse.profile && (
             <ProfileReadOnly
-              username={apiResponse.user.username}
-              email={apiResponse.user.email}
-              first_name={apiResponse.user.first_name}
-              last_name={apiResponse.user.last_name}
-              bio={apiResponse.profile.bio}
-              url={apiResponse.profile.url}
-            />
-          )}
+              username={apiResponseUser.username}
+              email={apiResponseUser.email}
+              first_name={apiResponseUser.first_name}
+              last_name={apiResponseUser.last_name}
+              bio={apiResponseProfile.bio}
+              url={apiResponseProfile.url}>
+              </ProfileReadOnly>
         </div>
     );
 };

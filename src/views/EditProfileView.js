@@ -60,16 +60,6 @@ export const EditProfileView = () => {
             Authorization: `Token ${token}`, // Incluir el token en el encabezado
             'Content-Type': 'application/json'
           };
-    /** 
-            const formData = new FormData();
-            formData.append('bio', bio);
-        
-            const response = await fetch(apiChangeBioProfileUrl, {
-                method: 'PUT',
-                headers,
-                body: formData,
-            });
-*/
           const data = {
             'bio': bio,
           };

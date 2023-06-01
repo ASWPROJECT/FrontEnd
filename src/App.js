@@ -35,6 +35,7 @@ function App() {
           <Route path="/bulk_insert" element={requireLogin(<BulkInsertView />)} />
           <Route path="/edit_profile" element={requireLogin(<EditProfileView />)} />
           <Route path="/profile" element={requireLogin(<ProfileView />)} />
+          <Route path="/users/:id" element={requireLogin(<ProfileView />)} />
           <Route path="*" element={requireLogin(<Error404View />)} />
         </Route>
       </Routes>

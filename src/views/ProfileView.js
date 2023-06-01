@@ -37,7 +37,7 @@ export const ProfileView = () => {
             const responseDataBio = await responseBio.json();
     
             setApiResponseProfile(responseDataBio);
-            setApiResponseUser(responseDataUser.user);
+            setApiResponseUser(responseDataUser);
     
           } catch (error) {
             console.error('Error:', error);

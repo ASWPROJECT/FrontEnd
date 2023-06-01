@@ -4,7 +4,7 @@ import '../assets/css/IssueDetail.css'
 import { Comment } from './Comment.js';
 import { File } from './File.js';
 import { ActivityIssue } from './ActivityIssue.js';
-
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'https://issuetracker2-asw.herokuapp.com'
 
@@ -19,6 +19,7 @@ export const IssueDetail = ({issue}) => {
     const [severity, setSeverity] = useState('');
     const [creator, setCreator] = useState('');
     const [newComment, setNewComment] = useState('');
+    const [blockReason, blockIssue] = useState('');
     const [comments, setComments] = useState([]);
     const [newFile, setNewFile] = useState('');
     const [files, setFiles] = useState([]);
@@ -28,14 +29,16 @@ export const IssueDetail = ({issue}) => {
     const [watchersUsers, setWatchersUsers] = useState([]);
     const [assignedArray, setAssignedArray] = useState([]);
     const [assigned, setAssigned] = useState('');
-
-
+    
     const SERVER_URL = `${BASE_URL}/issues/${id}`;
     const POST_COMMENT_URL = `${BASE_URL}/issues/${id}/comments`;
+    const BLOCK_ISSUE_URL = `${BASE_URL}/issues/${id}/toggle_block_issue/`;
     const POST_FILE_URL = `${BASE_URL}/issues/files/`;
     const POST_WATCHERS_URL = `${BASE_URL}/issues/${id}/watch`;
     const POST_ASSIGNED_URL = `${BASE_URL}/issues/${id}/assign`;
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+    const isBlocked = issue.Block_reason != null
 
     useEffect(() => {
         setSubject(issue.Subject);
@@ -148,6 +151,34 @@ export const IssueDetail = ({issue}) => {
         }
     };
 
+    const handelBlockIssuePut = async () => {
+      try {    
+        const headers = {
+          Authorization: `Token ${token}`,
+          'Content-Type': 'application/json'
+        };
+
+        var data = {};
+
+        if(blockReason != ""){
+          data = {            
+            Block_reason: blockReason,
+          }
+        }
+  
+        const response = await fetch(BLOCK_ISSUE_URL, {
+          method: 'PUT',
+          headers,
+          body: JSON.stringify(data)
+        });
+
+        navigate('/')
+  
+      } catch (error) {
+        console.error('Error:', error);
+      }
+  };
+
     const handelFilePost = async () => {
       try {    
         const headers = {
@@ -253,6 +284,10 @@ export const IssueDetail = ({issue}) => {
         console.error('Error:', error);
       }
     };
+
+    const handleBlockIssue = (event) => {
+      blockIssue(event.target.value);
+    };
     
     const handleAssignedChange = (event) => {
         setAssigned(event.target.value);
@@ -297,7 +332,7 @@ export const IssueDetail = ({issue}) => {
         <div class="form">
             <div class="form-element">
                 <label class="subject-label">#{id}</label>
-                <input class="subject-input" name="Subject" type="text" value={subject} onChange={handleSubjectChange}/>
+                <input class="subject-input" name="Subject" type="text" value={subject} onChange={handleSubjectChange} readOnly={isBlocked}/>
             </div>
             <div class="info-issue">
               <label class="issue-label">ISSUE</label>
@@ -306,13 +341,13 @@ export const IssueDetail = ({issue}) => {
             <hr/>
             <br/>
             <div class="form-element">
-                <textarea class="description-input" name="Description" value={description} placeholder="Empty space is so boring...go on, be descriptive..." onChange={handleDescriptionChange}/>
+                <textarea class="description-input" name="Description" value={description} placeholder="Empty space is so boring...go on, be descriptive..." onChange={handleDescriptionChange} readOnly={isBlocked}/>
             </div>
             <br/>
             <label className="search-bar" htmlFor="status">
                 Status:
             </label>
-            <select className="select-filters" id="status" name="status" value={status} onChange={handleStatusChange}>
+            <select className="select-filters" id="status" name="status" value={status} onChange={handleStatusChange} disabled={isBlocked}>
                 <option value=""></option>
                 <option value="New">New</option>
                 <option value="In progress">In progress</option>
@@ -325,7 +360,7 @@ export const IssueDetail = ({issue}) => {
             <label className="search-bar" htmlFor="priority">
                 Type:
               </label>
-              <select className="select-filters" id="priority" name="priority" value={type} onChange={handleTypeChange}>
+              <select className="select-filters" id="priority" name="priority" value={type} onChange={handleTypeChange} disabled={isBlocked}>
                 <option value=""></option>
                 <option value="Bug">Bug</option>
                 <option value="Question">Question</option>
@@ -334,7 +369,7 @@ export const IssueDetail = ({issue}) => {
             <label className="search-bar" htmlFor="priority">
                 Severity:
             </label>
-            <select className="select-filters" id="priority" name="priority" value={severity} onChange={handleSeverityChange}>
+            <select className="select-filters" id="priority" name="priority" value={severity} onChange={handleSeverityChange} disabled={isBlocked}>
                 <option value=""></option>
                 <option value="Wishlist">Wishlist</option>
                 <option value="Minor">Minor</option>
@@ -345,7 +380,7 @@ export const IssueDetail = ({issue}) => {
             <label className="search-bar" htmlFor="priority">
                 Priority:
             </label>
-            <select className="select-filters" id="priority" name="priority" value={priority} onChange={handlePriorityChange}>
+            <select className="select-filters" id="priority" name="priority" value={priority} onChange={handlePriorityChange} disabled={isBlocked}>
                 <option value=""></option>
                 <option value="Low">Low</option>
                 <option value="Normal">Normal</option>
@@ -354,15 +389,18 @@ export const IssueDetail = ({issue}) => {
             <label className="search-bar" htmlFor="priority">
                 DueDate:
             </label>
-            <input className="select-filters" type="date" id="dateInput" value={dueDate} onChange={handleDateChange}/>
+            <input className="select-filters" type="date" id="dateInput" value={dueDate} onChange={handleDateChange} readOnly={isBlocked}/>
             <br/>
-            <button className="save-info-button" onClick={handlePut}>Save</button>
+            {!isBlocked ? (
+              <button className="save-info-button" onClick={handlePut}>Save</button>
+              ):(null)
+            }
             <br/>
             <hr/>
             <br/>
             <div class="assigned-component">
               <label class="assigned-label">Assigned to: </label>
-              <select class="select-assigned" id="assigned" name="assigned" value={assigned} onChange={handleAssignedChange}>
+              <select class="select-assigned" id="assigned" name="assigned" value={assigned} onChange={handleAssignedChange} disabled={isBlocked}>
                   <option value=""></option>
                   {Array.isArray(users) ? (
                     users.map(user => (
@@ -372,7 +410,10 @@ export const IssueDetail = ({issue}) => {
                     null
                   )}
               </select>
-              <button class="assign-button" onClick={handleAssignedPost} title="Save assigned user"></button>
+              {!isBlocked ? (
+                <button class="assign-button" onClick={handleAssignedPost} title="Save assigned user"></button>
+              ):(null)
+              }              
             </div>
             <br/>
             <div class="watchers-component">
@@ -385,11 +426,41 @@ export const IssueDetail = ({issue}) => {
                       value={user.id}
                       checked={watchersUsers.some((watcher) => watcher === user.id)}
                       onChange={(e) => handleUserSelection(user.id, e.target.checked)}
+                      disabled={isBlocked}
                       />
                       {user.username}
                   </li>
               ))}
-              <button class="assign-button" onClick={handleWatchersPost} title="Save watchers"></button>
+              {!isBlocked ? (
+                <button class="assign-button" onClick={handleWatchersPost} title="Save watchers"></button>
+                ):(null)
+              }              
+            </div>
+            <br/>
+            <hr/>
+            <br/>
+            <br/>
+            <div class="comments-component"><br/>
+              <label class="issue-label">Block issue</label>
+              <br/>
+              <br/>
+              {!isBlocked ? (
+                  <div class="add-comment">
+                    <textarea class="comment-textarea" name="Comment" placeholder="Type the block reason" onChange={handleBlockIssue} value={blockReason} readOnly={isBlocked}></textarea>
+                    <button name="create" class="post-comment-button" onClick={handelBlockIssuePut}>Block</button>
+                  </div>
+                ) : (
+                  <div>
+                    <label class="blocked">Block reason: {issue.Block_reason}</label>
+                    <br/>
+                    <button name="create" class="post-comment-button" onClick={handelBlockIssuePut}>Unblock</button>
+                  </div>
+                )
+              }
+              <br/>
+              {comments.map((comment, index) => (
+                  <Comment key={index} comment={comment.Comment} created_at={comment.Created_at} creator={comment.Username} />
+              ))}
             </div>
             <br/>
             <hr/>
@@ -399,13 +470,16 @@ export const IssueDetail = ({issue}) => {
               <label class="issue-label">ATTACHMENTS</label>
               <br/>
               <br/>
-              <div class="add-file">
-                <input class="add-file-input" type="file" onChange={handleNewFile}/>
-                <button class="add-file-button" onClick={handelFilePost}>Upload</button>
-              </div>
+              {!isBlocked ? (
+                <div class="add-file">
+                  <input class="add-file-input" type="file" onChange={handleNewFile} readOnly={isBlocked}/>
+                  <button class="add-file-button" onClick={handelFilePost}>Upload</button>
+                </div>
+              ):(null)
+              }
               <br/>
-              {files.map((file, index) => (
-                  <File key={index} id={file.id} name={file.Name} file={file.File} issue={file.Issue} onDelete={deleteFile}/>
+              {files.map((file, index) => (                  
+                  <File key={index} id={file.id} name={file.Name} file={file.File} issue={file.Issue} onDelete={deleteFile} isBlocked={isBlocked}/>
               ))}
             </div>
             <br/>
@@ -416,10 +490,13 @@ export const IssueDetail = ({issue}) => {
               <label class="issue-label">COMMENTS</label>
               <br/>
               <br/>
-              <div class="add-comment">
-                <textarea class="comment-textarea" name="Comment" placeholder="Type a new comment here" onChange={handleNewComment} value={newComment}required></textarea>
-                <button name="create" class="post-comment-button" onClick={handelCommentPost}>Post</button>
-              </div>
+              {!isBlocked ? (
+                <div class="add-comment">
+                  <textarea class="comment-textarea" name="Comment" placeholder="Type a new comment here" onChange={handleNewComment} value={newComment} required readOnly={isBlocked}></textarea>
+                  <button name="create" class="post-comment-button" onClick={handelCommentPost}>Post</button>
+                </div>
+                ):(null)
+              }
               <br/>
               {comments.map((comment, index) => (
                   <Comment key={index} comment={comment.Comment} created_at={comment.Created_at} creator={comment.Username} />

@@ -11,7 +11,7 @@ export const File = (props) => {
   return (
     <div class="file">
           <div class="file-info">
-            <a class="file-name" href={file} download>
+            <a class="file-name">
               {name}
             </a>
             {!isBlocked ? (

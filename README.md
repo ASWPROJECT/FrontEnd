@@ -11,5 +11,8 @@
 ## Deployed
 - https://issuetracker2.netlify.app/
 
+## Taiga
+- https://tree.taiga.io/project/javierrodriguezupc-asw/timeline
+
 ## Framework utilizado
 - React
